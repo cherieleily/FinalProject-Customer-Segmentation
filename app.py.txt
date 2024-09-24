@@ -1,0 +1,17 @@
+import streamlit as st
+import joblib
+import pandas as pd
+
+# Load model
+model = joblib.load('random_forest_model.pkl')
+
+st.title("Aplikasi Prediksi dengan Random Forest")
+
+# Input data
+input_data = st.text_input("Masukkan data fitur (misal: 5, 3, 1.5, 0.2)")
+
+if st.button("Prediksi"):
+    # Convert input ke list dan lakukan prediksi
+    features = [float(x) for x in input_data.split(',')]
+    prediction = model.predict([features])
+    st.write(f"Prediksi: {prediction[0]}")
